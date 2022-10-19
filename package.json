@@ -9,7 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.10",
     "axios": "^1.1.2",
+    "devextreme": "22.1.5",
+    "devextreme-react": "22.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

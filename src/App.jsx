@@ -3,6 +3,10 @@ import reactLogo from './assets/react.svg';
 import './App.css';
 import { useEffect } from 'react';
 import axios from 'axios';
+import SpeedChart from './components/SpeedChart';
+import SecondChart from './components/BarChart';
+import TirePressure from './components/TirePressure';
+import Kilometter from './components/Kilemeter';
 
 function App() {
   const [data, setData] = useState();
@@ -22,10 +26,19 @@ function App() {
 
   return (
     <div className='App'>
-      <div className='container'>{data?.name}</div>
-      <div className='container'></div>
-      <div className='container'></div>
-      <div className='container'></div>
+      {/* <div className='container'>{data?.name}</div> */}
+      <div className='container'>
+        <SpeedChart />
+      </div>
+      <div className='container'>
+        <SecondChart />
+      </div>
+      <div className='container'>
+        <TirePressure />
+      </div>
+      <div className='container'>
+        <Kilometter />
+      </div>
     </div>
   );
 }
