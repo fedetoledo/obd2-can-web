@@ -8,24 +8,23 @@ import Typography from '@mui/material/Typography';
 
 const bull = (
   <Box
-    component="span"
+    component='span'
     sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
   >
     •
   </Box>
 );
 
-export default function Kilometter() {
+export default function Kilometter({ data }) {
   return (
     <div className='Kilomettercontainer'>
-    <Card sx={{ minWidth: 275 }} >
-      <CardContent>
-        <Typography variant="h2" component="div">
-          33.44423 Km
-        </Typography>
-      </CardContent>
-    </Card>
-
+      <Card sx={{ minWidth: 275 }}>
+        <CardContent>
+          <Typography variant='h2' component='div'>
+            {data?.run_time} Km
+          </Typography>
+        </CardContent>
+      </Card>
     </div>
   );
 }

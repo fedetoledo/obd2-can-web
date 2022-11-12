@@ -11,33 +11,47 @@ import Kilometter from './components/Kilemeter';
 function App() {
   const [data, setData] = useState();
 
+  //   fuel_pressure
+  // fuel_tank_level
+  // intake_air_temp
+  // rpm
+  // run_time
+  // speed
+  // throttle_position
+
   useEffect(() => {
+    let interval;
     (async () => {
-      console.log('passing');
-      const result = await axios.get('http://192.168.100.89/inline', {
-        headers: {
-          'Access-Control-Allow-Headers': '*',
-          'Content-Type': 'text/json',
-        },
-      });
-      setData(result.data);
+      let tick = 0;
+      interval = setInterval(async () => {
+        tick++;
+        console.log('passing', tick);
+        const result = await axios.get('http://192.168.100.37:80/getData', {
+          headers: {
+            'Access-Control-Allow-Headers': '*',
+            'Content-Type': 'text/json',
+          },
+        });
+        setData(result.data);
+      }, 2000);
     })();
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <div className='App'>
       {/* <div className='container'>{data?.name}</div> */}
       <div className='container'>
-        <SpeedChart />
+        <SpeedChart data={data} label='Velocidad - Km/h' />
       </div>
       <div className='container'>
-        <SecondChart />
+        <SecondChart data={data} />
       </div>
       <div className='container'>
-        <TirePressure />
+        <SpeedChart data={data} label='RPM' />
       </div>
       <div className='container'>
-        <Kilometter />
+        <Kilometter data={data} />
       </div>
     </div>
   );

@@ -81,30 +81,39 @@
 
 // }
 
-
 // export default TimelineChart;
 import React from 'react';
 import {
-  CircularGauge, Scale, Tick, MinorTick, RangeContainer, Title, Font, Export,
+  CircularGauge,
+  Scale,
+  Tick,
+  MinorTick,
+  RangeContainer,
+  Title,
+  Font,
+  Export,
 } from 'devextreme-react/circular-gauge';
 
-const SpeedChart = () => {
-    return (
-      <CircularGauge
-        id="gauge"
-        value={110}
-        className="chartTest"
+const SpeedChart = ({ data, label }) => {
+  const value = label === 'RPM' ? data?.rpm : data?.speed;
+
+  return (
+    <CircularGauge id='gauge' value={value} className='chartTest'>
+      <Scale
+        startValue={0}
+        endValue={label === 'RPM' ? 12000 : 300}
+        tickInterval={label === 'RPM' ? 1000 : 10}
+        minorTickInterval={25}
       >
-        <Scale startValue={0} endValue={400} tickInterval={10} minorTickInterval={25}>
-          <Tick color="#9c9c9c" />
-          <MinorTick visible={true} color="#9c9c9c" />
-        </Scale>
-        <RangeContainer backgroundColor="none" />
-        <Title text="Velocidad (en rpm)">
-          <Font size={28} />
-        </Title>
-      </CircularGauge>
-    );
-}
+        <Tick color='#9c9c9c' />
+        <MinorTick visible={true} color='#9c9c9c' />
+      </Scale>
+      <RangeContainer backgroundColor='none' />
+      <Title text={label}>
+        <Font size={28} />
+      </Title>
+    </CircularGauge>
+  );
+};
 
 export default SpeedChart;
